@@ -37,6 +37,28 @@ namespace EPAMDrawingProgram
 			return (x >= 0 && y >= 0 && x < width && y < height) ? true : false;
 		}
 
+		public void DrawLine(int x1, int y1, int x2, int y2)
+		{
+			if (!CheckBounds(ref x1, ref y1) || !CheckBounds(ref x2, ref y2)) return;
+
+			while (x1 < x2 || y1 < y2)
+			{
+				if (x1 < x2) x1++;
+				if (y1 < y2) y1++;
+				data[x1, y1] = 'x';
+			}
+		}
+
+		public void DrawRectangle(int x1, int y1, int x2, int y2)
+		{
+
+		}
+
+		public void BucketFill(int x, int y, char c)
+		{
+
+		}
+
 		/// <summary>
 		/// Draws the Canvas to the console
 		/// Writes a full line of hyphens above and below the sheet
