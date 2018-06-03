@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EPAMDrawingProgram
 {
-    class DrawingProgramConsole
+	class DrawingProgramConsole
     {
 		Canvas canvas;
 
@@ -73,14 +71,45 @@ namespace EPAMDrawingProgram
 
 		void drawRectangle(String input)
 		{
-
+			if (canvas == null)
+			{
+				Console.WriteLine("You must create a canvas first");
+			}
+			else if (parseInts(input, 4, out int[] vals))
+			{
+				canvas.DrawRectangle(vals[0], vals[1], vals[2], vals[3]);
+				canvas.Render();
+			}
+			ReadNext();
 		}
 
 		void bucketFill(String input)
 		{
+			if (canvas == null)
+			{
+				Console.WriteLine("You must create a canvas first");
+			}
+			else 
+			{
+				try
+				{
+					String[] inputs = input.Split(' ');
+					int x = int.Parse(inputs[1]);
+					int y = int.Parse(inputs[2]);
+					char c = char.Parse(inputs[3]);
 
+					canvas.BucketFill(x, y, c);
+					canvas.Render();
+				}
+				catch
+				{
+					showInputFormatError();
+				}
+			}
+			ReadNext();
 		}
 
+		// helper function for parsing integers from an input string
 		bool parseInts(String line, int count, out int[] vals)
 		{
 			int i = 0;
